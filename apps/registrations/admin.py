@@ -1,3 +1,8 @@
 from django.contrib import admin
+from .models import Registration
 
-# Register your models here.
+@admin.register(Registration)
+class RegistrationAdmin(admin.ModelAdmin):
+    list_display = ('user', 'event', 'status', 'created_at')
+    list_filter = ('status', 'event')
+    search_fields = ('user__email', 'event__title')
